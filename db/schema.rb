@@ -10,9 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_08_06_065000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "apartments", force: :cascade do |t|
+    t.string "title"
+    t.string "city"
+    t.string "address"
+    t.string "photo"
+    t.text "description"
+    t.string "price"
+    t.integer "capacity"
+    t.boolean "available"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_apartments_on_user_id"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer "total_price"
+    t.boolean "booking_status"
+    t.string "user"
+    t.string "apartment"
+    t.string "references"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "avatar"
+    t.string "phone_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "apartments", "users"
 end

@@ -11,7 +11,6 @@ gem 'redis'
 gem 'autoprefixer-rails'
 gem 'sassc-rails'
 gem 'uglifier'
-gem 'webpacker'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
